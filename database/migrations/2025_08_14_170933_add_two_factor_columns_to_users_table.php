@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
             $table->text('description')->nullable();
-            $table->unsignedInteger('price');
-            $table->timestamps();
+            $table->unsignedInteger('price')->default(0);
         });
     }
 
@@ -27,9 +24,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn([
-                'two_factor_secret',
-                'two_factor_recovery_codes',
-                'two_factor_confirmed_at',
+                'description',
+                'price',
             ]);
         });
     }
